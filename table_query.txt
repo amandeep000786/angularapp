@@ -1,0 +1,19 @@
+-- Table: public.data
+
+-- DROP TABLE public.data;
+
+CREATE TABLE public.data
+(
+  id integer NOT NULL DEFAULT nextval('data_id_seq'::regclass),
+  name character varying,
+  roll_no integer,
+  picname character varying,
+  gender character varying,
+  langknown text[],
+  dob timestamp without time zone
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.data
+  OWNER TO postgres;
