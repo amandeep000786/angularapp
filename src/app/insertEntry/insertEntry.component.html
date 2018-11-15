@@ -1,0 +1,66 @@
+<section class="mat-typography"><mat-card id="asd" style="margin-bottom: 1rem">
+
+  <form  [formGroup]="myform" >
+  <div style="width: 700px;"><mat-form-field>
+
+      <input  matInput #xyz (change)='greet(xyz)' formControlName="name" placeholder='Your Name here' type="text" >
+
+  </mat-form-field>
+
+  <mat-form-field>
+
+      <input type="number"style="width:80%" formControlName="roll_no"  matInput placeholder='Enter roll no.'>
+  </mat-form-field>
+  
+  <mat-form-field>
+<mat-select #abc (valueChange)="greet(abc)"  formControlName="gender" placeholder="Select Gender" required>
+  <mat-option value="male">Male</mat-option>
+  <mat-option value="female">Female</mat-option>
+</mat-select>
+</mat-form-field></div>
+<mat-form-field  style="width:500px;">
+
+<mat-select #selection (valueChange)="langknownSelected(selection)" formControlName="langknown" placeholder=" Hi, {{this.name11}} Select languages known from given options :" multiple  required>
+
+  <mat-option style="margin-top:10px;" value="c1" color="primary">Java</mat-option>
+ 
+<mat-option  value="c2" color="primary">Python </mat-option>
+<mat-option value="c3" color="primary">Angular Js</mat-option>
+<mat-option  value="c4" color="primary">Node Js</mat-option>
+<mat-option value="c5" color="primary">Php</mat-option>
+<mat-option value="c6" color="primary">CSS</mat-option>
+</mat-select>
+</mat-form-field><br>
+<span> Choose DOB:</span>&nbsp;<div style="width: 200px"><mat-form-field>
+<input matInput [matDatepicker]="picker" (dateChange)="showdate($event)" formControlName="date" placeholder="MM/DD/YYYY" required>
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field></div>
+
+<hr>
+<div>   
+ <input type="file" accept="image/jpeg" style=display:none name="photo" #filechoose formControlName="filechoose" (change)="FileSelected($event)"  />&nbsp;
+
+  <button type="button"  matTooltip="upload the picture" class="btn btn-success btn-s" (click)="filechoose.click()">
+      <i class="fa fa-upload"></i>  Upload an Image
+  </button>
+
+  <mat-spinner *ngIf="showProgressBar" ></mat-spinner>
+
+  <img *ngIf="filename" src='http://localhost:3000/download/{{filename}}' style="margin-left:30px; width:100px;height:100px;" alter="upload image">
+</div>
+
+
+<hr>
+
+<button *ngIf="flag==false" mat-raised-button matTooltip="Submit your data"  color='primary' type="button" (click)="sendData()">Submit</button>
+
+<button *ngIf="flag==true" mat-raised-button matTooltip="Update existing data" color='primary' type="button" (click)="updateData()">Update</button>
+<button style="margin-left: 10px;" mat-raised-button color="warn" (click)="clear()">Clear</button>
+
+<div *ngIf="success">Data submitted successfully!</div>
+<div *ngIf="successupd">Data updated successfully!</div>
+
+</form>
+</mat-card></section>
+

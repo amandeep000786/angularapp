@@ -1,0 +1,72 @@
+
+<head><link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"></head>
+<mat-card>
+
+<table style='margin-top: 20px; border-radius:25px; -moz-border-radius:10px; -webkit-border-radius:10px;'  align="center" border='2' width="90%">
+    <tr >
+      <th>Sr. No.</th>
+      <th>
+         name
+      </th>
+ <th>
+   roll no
+ </th>
+ <th>gender</th>
+ <th>Lang. known</th>
+ <th>dob</th>
+ <th>
+   picture
+  </th><!--id: 'listing_pagination', -->
+ <th colspan="2">Action</th>
+    </tr>
+     <tr *ngFor ="let data of namedata |  paginate: { id: 'listing_pagination',itemsPerPage: record,currentPage: page,totalItems: totalRec }; let row = index "  >
+      <td>{{row +1}}</td>
+      <td> {{data.name}}
+ 
+      </td>
+      <td>
+         {{data.roll_no}}
+      </td>
+      <td>{{data.gender}}</td>
+      <td>
+        <div *ngFor="let asd of data.langknown" >
+          <p>{{languages[asd]}}</p>
+         </div>
+      </td>
+      <td>{{data.dob | date: 'dd/MM/yyyy'}}</td>
+      <td>
+ 
+       <img class="img-responsive" src='http://localhost:3000/download/{{data.picname}}' style="width:100px; height:100px;" >
+      </td>
+ <td><button color="primary" mat-raised-button  [routerLink]="['add',data.id]" matTooltip="Edit existing data">Edit</button>
+   <button style="margin-left:5px;" color="warn" matTooltip="Delete existing data" mat-raised-button (click)="delete_data(row)">Delete</button>
+  </td>
+ 
+ 
+     </tr>
+     </table>
+     <div class="row">
+      <div class="col-md-3" >
+      <pagination-controls  id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event" >
+
+      </pagination-controls>
+    </div>
+     <div class="col-md-1">
+    
+          
+        <select #rpp (change)="recordPerPage(rpp)" style="margin-left: 1px;">
+        
+          <option value="2" selected="selected">2</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="10">10</option>
+          <option value="12">12</option>
+        </select>
+     
+       
+     </div>
+    
+    </div>
+    
+     </mat-card>
+   
